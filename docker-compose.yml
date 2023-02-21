@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  bot:
+    build:
+      context: ""
+    networks:
+      - durakbot
+    depends_on:
+      - redisdb
+    environment:
+      - REDIS_HOST=redisdb
+      - REDIS_PORT=6379
+  redisdb:
+    image: redis
+    ports:
+      - "6379"
+    networks:
+      - durakbot
+
+networks:
+  durakbot:
